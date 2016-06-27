@@ -1,6 +1,9 @@
 #!/bin/bash
 # aluno: Fernando Bueno Dansi
 # Data : 27/06/2016
+																																																																																																																																																																																																																					# aluno: Fernando Bueno Dansi
+																																																																																																																																																																																																																					# Data : 27/06/2016
+
 while : ; do
 
 adduser() {
@@ -167,6 +170,8 @@ permite_user_admin() {
 
 }
 
+																																																																																																																																																																																																																																																																																																												# aluno: Fernando Bueno Dansi																																																																																														
+																																																																																																																																																																																																																																																																																																												# Data : 27/06/2016
 
 
 
@@ -219,3 +224,20 @@ case $opcao in
 esac
 
 done
+
+
+
+# aluno: Fernando Bueno Dansi
+# Data : 27/06/2016
+
+
+# aluno: Fernando Bueno Dansi
+# Data : 27/06/2016
+
+
+# aluno: Fernando Bueno Dansi
+# Data : 27/06/2016
+
+
+# aluno: Fernando Bueno Dansi
+# Data : 27/06/2016
