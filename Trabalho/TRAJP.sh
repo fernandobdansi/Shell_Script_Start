@@ -85,7 +85,7 @@ apagar_grupo() {
 info_Pessoal_user() {
 					user=$( dialog --stdout --inputbox "Digite o nome do Usuario que deseja ver as informaçoes pessoais:" 0 0)
 
-						dialog --prgbox "finger $user" 0 0
+						dialog --prgbox "finger $user" 50 100
 
 					sleep 2
 
@@ -160,6 +160,24 @@ config_data_user_sera_desabilitado() {
 
 }
 
+mostra_config_senha_user() {
+					user=$( dialog --stdout --inputbox "Digite o nome do Usuario que deseja ver as informaçoes de Senha:" 0 0)
+
+						dialog --prgbox "chage -l $user" 50 100
+
+					sleep 2
+
+}
+
+mostra_grupo_user() {
+					user=$( dialog --stdout --inputbox "Digite o nome do Usuario que deseja ver as informaçoes do Grupo:" 0 0)
+
+						dialog --prgbox "id $user" 50 100
+
+					sleep 2
+
+}
+
 permite_user_admin() {
 					user=$( dialog --stdout --inputbox "Digite o nome do Usuario que deseja tornar administrador:" 0 0)
 
@@ -170,7 +188,10 @@ permite_user_admin() {
 
 }
 
-																																																																																																																																																																																																																																																																																																												# aluno: Fernando Bueno Dansi																																																																																														
+exibe_user_util_syste() {
+
+
+}																																																																																																																																																																																																																																																																																																								# aluno: Fernando Bueno Dansi
 																																																																																																																																																																																																																																																																																																												# Data : 27/06/2016
 
 
@@ -214,11 +235,11 @@ case $opcao in
 11) config_num_min_dias_modif_senha_user ;;
 12) config_num_max_dias_modif_senha_user ;;
 13) config_num_dias_aviso_prazo_final_alt_senha ;;
-14) config_data_user_sera_desabilitado;;
-15) ;;
-16) ;;
+14) config_data_user_sera_desabilitado ;;
+15) mostra_config_senha_user ;;
+16) mostra_grupo_user ;;
 17) permite_user_admin ;;
-18) ;;
+18) exibe_user_util_syste ;;
 19) break ;;
 *) dialog --infobox 'Opção Invalida' 0 0;;
 esac
