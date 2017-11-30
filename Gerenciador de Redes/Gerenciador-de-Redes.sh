@@ -1,195 +1,151 @@
 #!/bin/bash  
-# Alunos: Fernando Bueno Dansi
+# Fernando Bueno Dansi
 
 while : ; do
 
 configname() {
-		name=$( dialog --stdout --inputbox "Digite o nome da Maquina:" 0 0)
-
-			hostname $name
-
-		dialog --stdout --infobox "O Nome $name Foi Configurado" 0 0
-		sleep 2
+  name=$( dialog --stdout --inputbox "Digite o nome da Maquina:" 0 0)
+    hostname $name
+  dialog --stdout --infobox "O Nome $name Foi Configurado" 0 0
+  sleep 2
 }
 
 mostrarname() {
-
-		dialog --prgbox "hostname" 50 100
-
+  dialog --prgbox "hostname" 50 100
 }
 
 rede_tempora() {
-		placa=$( dialog --stdout --inputbox "Digite o nome da Placa de Rede" 0 0)
-		ip=$( dialog --stdout --inputbox "Digite o ip Desejado" 0 0)
-		netmask=$( dialog --stdout --inputbox "Digite a Mascara Desejada" 0 0)
-
-			ifconfig $placa $ip netmask $netmask
-
-		dialog --stdout --infobox "Rede Temporia Configurada" 0 0
-		sleep 2
+  placa=$( dialog --stdout --inputbox "Digite o nome da Placa de Rede" 0 0)
+  ip=$( dialog --stdout --inputbox "Digite o ip Desejado" 0 0)
+  netmask=$( dialog --stdout --inputbox "Digite a Mascara Desejada" 0 0)
+  
+  ifconfig $placa $ip netmask $netmask
+  
+  dialog --stdout --infobox "Rede Temporia Configurada" 0 0
+  sleep 2
 }
 
 Visu_Config_rede() {
-
-		dialog --stdout --prgbox "ifconfig" 50 100
-		sleep 5
+  dialog --stdout --prgbox "ifconfig" 50 100
+  sleep 5
 }
 
 Cria_Rota_Padrao() {
-		ip=$( dialog --stdout --inputbox "Digite o IP para Rota PadrÃ£o" 0 0)
-
-			route add default gw $ip
-
-		dialog --stdout --infobox "Rota PadrÃ£o Configurada" 0 0
-		sleep 2
-
+  ip=$( dialog --stdout --inputbox "Digite o IP para Rota PadrÃ£o" 0 0)
+   
+   route add default gw $ip
+  
+  dialog --stdout --infobox "Rota PadrÃ£o Configurada" 0 0
+  sleep 2
 }
 
 Cria_Rota_Qualquer() {
+  ip=$( dialog --stdout --inputbox "Digite o IP para Rota" 0 0)
+  mask=$( dialog --stdout --inputbox "Digite a Mascara da Rede" 0 0)
+  ip2=$( dialog --stdout --inputbox "Digite o EndereÃ§o do Roteador" 0 0)
+   
+   route add -net $ip mask $mask gw $ip2
 
-		ip=$( dialog --stdout --inputbox "Digite o IP para Rota" 0 0)
-		mask=$( dialog --stdout --inputbox "Digite a Mascara da Rede" 0 0)
-		ip2=$( dialog --stdout --inputbox "Digite o EndereÃ§o do Roteador" 0 0)
-
-			route add -net $ip mask $mask gw $ip2
-
-		dialog --stdout --infobox "Rota Configurada" 0 0
-		sleep 2
-
+  dialog --stdout --infobox "Rota Configurada" 0 0
+  sleep 2
 }
 
 Ver_Rotas() {
-
-		dialog --stdout --prgbox "route" 50 100
-
+  dialog --stdout --prgbox "route" 50 100
 }
 
 Remo_Rota_Padrao() {
-
-		route del default
-
-		dialog --stdout --infobox "Rota Padrao Removida" 0 0
-
+  route del default
+  dialog --stdout --infobox "Rota Padrao Removida" 0 0
 }
 
 
 Remo_Rota_Qualquer() {
-
-		ip=$( dialog --stdout --inputbox "Digite o IP para Rota" 0 0)
-		mask=$( dialog --stdout --inputbox "Digite a Mascara da Rede" 0 0)
-		ip2=$( dialog --stdout --inputbox "Digite o EndereÃ§o do Roteador" 0 0)
-
-			route del -net $ip mask $mask gw $ip2
-
-		dialog --stdout --infobox "Rota Removida" 0 0
-		sleep 2
-
+  ip=$( dialog --stdout --inputbox "Digite o IP para Rota" 0 0)
+  mask=$( dialog --stdout --inputbox "Digite a Mascara da Rede" 0 0)
+  ip2=$( dialog --stdout --inputbox "Digite o EndereÃ§o do Roteador" 0 0)
+  
+    route del -net $ip mask $mask gw $ip2
+  
+  dialog --stdout --infobox "Rota Removida" 0 0
+  sleep 2
 }
 
 Desativar_interface_rede() {
-
-		interface=$( dialog --stdout --inputbox "Digite a Interface Que Deseja Desativar:" 0 0)
-
-			ifconfig $interface  down
-
-		dialog --stdout --infobox "A Interface Foi Desativada" 0 0
-
-		sleep 2
-
+  interface=$( dialog --stdout --inputbox "Digite a Interface Que Deseja Desativar:" 0 0)
+    ifconfig $interface  down
+  dialog --stdout --infobox "A Interface Foi Desativada" 0 0
+  sleep 2
 }
 
 Ativar_interface_rede() {
-
-		interface=$( dialog --stdout --inputbox "Digite o Nome Da Interface Que Deseja Ativar:" 0 0)
-
-			ifconfig $interface up
-
-		dialog --stdout --infobox "A Interface Foi Ativada" 0 0
-
-		sleep 2
-
+  interface=$( dialog --stdout --inputbox "Digite o Nome Da Interface Que Deseja Ativar:" 0 0)
+  
+  ifconfig $interface up
+  
+  dialog --stdout --infobox "A Interface Foi Ativada" 0 0
+  sleep 2
 }
 
 renovar_emprestimo_ip() {
-
-		renovar=$( dialog --stdout --inputbox "Digite o Nome Da Interface Que Deseja Renovar:" 0 0)
-
-			dhclient $renovar
-
-		dialog --stdout --infobox "O Emprestivo e IP Foi Renovado" 0 0
-		sleep 2
-
+ renovar=$( dialog --stdout --inputbox "Digite o Nome Da Interface Que Deseja Renovar:" 0 0)
+ 
+   dhclient $renovar
+ 
+ dialog --stdout --infobox "O Emprestivo e IP Foi Renovado" 0 0
+ sleep 2
 }
 
 Liberar_config_interface() {
-
-		liberar=$( dialog --stdout --inputbox "Digite o Nome Da Interface Que Deseja Liberar o IP Emprestada a Interface:" 0 0)
-
-			dhclient -r $liberar
-
-		dialog --stdout --infobox "A Configuração Foi Liberada" 0 0
-		sleep 2
-
+  liberar=$( dialog --stdout --inputbox "Digite o Nome Da Interface Que Deseja Liberar o IP Emprestada a Interface:" 0 0)
+    
+    dhclient -r $liberar
+    
+  dialog --stdout --infobox "A Configuração Foi Liberada" 0 0
+  sleep 2
 }
 
 exibir_conexao_tpc() {
-
-		dialog --stdout --prgbox "ifconfig" 50 100
-
-		sleep 2
-
+  dialog --stdout --prgbox "ifconfig" 50 100
+  sleep 2
 }
 
-
-
-
 resolver_nome_ip() {
-
-		nome1=$( dialog --stdout --inputbox "digite o nome que deseja saber o endereço ip" 0 0)
-
-			dialog --stdout --prgbox "nslookup $nome1" 50 100
-
-		sleep 2
-
+  nome1=$( dialog --stdout --inputbox "digite o nome que deseja saber o endereço ip" 0 0)
+  dialog --stdout --prgbox "nslookup $nome1" 50 100
+  sleep 2
 }
 
 gravar_endereco_dns() {
-
-		dialog --infobox "Teste"
-
+  dialog --infobox "Teste"
 }
 
 exibe_tabela_arp() {
-
-		dialog --stdout --prgbox "arp -a" 50 100
-		sleep 2
-
+  dialog --stdout --prgbox "arp -a" 50 100
+  sleep 2
 }
+
 criar_tabela_arp(){
-
-		endip=$( dialog --stdout --inputbox "Digite o IP Para Criar Uma Entrada Estatica" 0 0)
-		endmac=$( dialog --stdout --inputbox "Digite o Endereço MAC Para Entrada Estatica" 0 0)
-
-			arp -s $endip $endmac
-
-		sleep 2
-
+  endip=$( dialog --stdout --inputbox "Digite o IP Para Criar Uma Entrada Estatica" 0 0)
+  endmac=$( dialog --stdout --inputbox "Digite o Endereço MAC Para Entrada Estatica" 0 0)
+    
+    arp -s $endip $endmac
+    
+  sleep 2
 }
+
 remover_tabela_arp(){
-
-		endip=$( dialog --stdout --inputbox "Digite o IP Para Remover Uma Entrada Estatica" 0 0)
-
-			arp -d $endip
-
-		sleep 2
+  endip=$( dialog --stdout --inputbox "Digite o IP Para Remover Uma Entrada Estatica" 0 0)
+  
+    arp -d $endip
+    
+  sleep 2
 }
 
 Saindo(){
-
-		dialog --stdout --infobox "Saindo!!!\nObrigado Por Utilizar!!!\n" 0 0
-			sleep 2
-		break;
-
+  dialog --stdout --infobox "Saindo!!!\nObrigado Por Utilizar!!!\n" 0 0
+  sleep 2
+  break;
 }
 
 #sair() { Usuario=$( dialog --stdout --infobox "Saindo" 0 0)
